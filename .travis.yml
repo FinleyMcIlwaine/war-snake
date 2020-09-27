@@ -4,7 +4,7 @@ services:
 
 # Can put tests and other pre-deploy things here
 before-install:
-  - docker build -t finleymcilwaine/war-snake
+  - docker build -t finleymcilwaine/war-snake .
 
 script:
   - docker --version
