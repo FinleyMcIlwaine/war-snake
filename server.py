@@ -2,7 +2,10 @@ import os
 import random
 
 import cherrypy
+import numpy as np
+
 from convert_utils import ObservationToStateConverter
+
 
 converter = ObservationToStateConverter(style='one_versus_all', border_option="1")
 
