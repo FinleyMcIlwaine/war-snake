@@ -2,6 +2,9 @@ import os
 import random
 
 import cherrypy
+from convert_utils import ObservationToStateConverter
+
+converter = ObservationToStateConverter(style='one_versus_all', border_option="1")
 
 """
 This is a simple Battlesnake server written in Python.
@@ -44,12 +47,40 @@ class Battlesnake(object):
         # TODO: Use the information in cherrypy.request.json to decide your next move.
         data = cherrypy.request.json
 
-        # Choose a random direction to move in
-        possible_moves = ["up", "down", "left", "right"]
-        move = random.choice(possible_moves)
+        current_state, previous_state = converter.get_game_state(data)
+    
+        # Get the list of possible directions
+        i,j = np.unravel_index(np.argmax(current_state[:,:,1], axis=None), current_state[:,:,1].shape)
+        snakes = current_state[:,:,1:].sum(axis=2)
+        food = current_state[:,:,0]
+        possible = []
+        food_locations = []
+        if snakes[i+1,j] == 0:
+            possible.append('down')
+        if snakes[i-1,j] == 0:
+            possible.append('up')
+        if snakes[i,j+1] == 0:
+            possible.append('right')
+        if snakes[i,j-1] == 0:
+            possible.append('left')
+        
+        # Food locations
+        if food[i+1, j] == 1:
+            food_locations.append('down')
+        if food[i-1,j] == 1:
+            food_locations.append('up')
+        if food[i,j+1] == 1:
+            food_locations.append('right')
+        if food[i,j-1] == 1:
+            food_locations.append('left')
+
+        move = random.choice(possible)
 
         print(f"MOVE: {move}")
-        return {"move": move}
+        return {
+            "move": move,
+            "shout": "YOU HAVE NO CHANCE, SURRENDER!"
+        }
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
