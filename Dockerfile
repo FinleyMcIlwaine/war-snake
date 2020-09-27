@@ -1,4 +1,4 @@
-FROM python:alpine3.12
+FROM python:buster
 WORKDIR /warsnake
 COPY ./requirements.txt ./
 RUN pip3 install -r requirements.txt
