@@ -3,10 +3,11 @@ services:
   - docker
 
 # Can put tests and other pre-deploy things here
-# before-install:
-#   - docker build .
+before-install:
+  - docker build -t finleymcilwaine/war-snake
 
-# script:
+script:
+  - docker --version
 
 deploy:
   provider: elasticbeanstalk
