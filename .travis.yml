@@ -1,0 +1,21 @@
+sudo: required
+services:
+  - docker
+
+# Can put tests and other pre-deploy things here
+# before-install:
+#   - docker build .
+
+# script:
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "war-snake"
+  env: "WarSnake-env"
+  bucket_name: "elasticbeanstalk-us-west-2-666739205128"
+  bucket_path: "war-snake"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
