@@ -35,12 +35,14 @@ class Battlesnake(object):
     def move(self):
         # LGTB
         data = cherrypy.request.json
-        env = Environment(data["board"])
-        my_head = tuple(data["board"]["you"]["head"].values())
+        env = Environment(data["board"], data["you"])
+        my_head = tuple(data["you"]["head"].values())
         close_food = env.get_closest_food(my_head)
 
+        print("SNAKE:" + f"I'm at {my_head}!")
+
         pq = PriorityQueue()
-        enemy_path = pq.enemy_paths(my_head, close_food, env)
+        enemy_path = pq.enemy_path(my_head, close_food, env)
         env.add_walls(enemy_path)
 
         if len(env.board["food"]) > 1:

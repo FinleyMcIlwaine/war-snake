@@ -1,5 +1,6 @@
 class Environment:
-    def __init__(self, board):
+    def __init__(self, board, me):
+        self.me = me
         self.board = board
         self.walls = []
 
@@ -49,9 +50,9 @@ class Environment:
 
     def get_target(self):
         # My location
-        my_head = tuple(self.board["you"]["head"].values())
+        my_head = tuple(self.me["head"].values())
         (my_head_x, my_head_y) = my_head
-        my_length = self.board["you"]["length"]
+        my_length = self.me["length"]
 
         # Closest food
         (food_x, food_y) = self.get_closest_food(my_head)
