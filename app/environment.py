@@ -88,7 +88,7 @@ class Environment:
                     enemy_tail = tuple(snake["body"][-1].values())
 
 
-        current_target = nearest_food
+        current_target = (food_x, food_y)
         others = []
         # If I'm longer than any enemy
         if my_length > longest_enemy:
