@@ -99,7 +99,7 @@ class Environment:
                     current_target = enemy_head
                 else:
                     # target random food if their is one
-                    for other in self.board("food"):
+                    for other in self.board["food"]:
                         if tuple(other.values()) != nearest_food:
                             selected = tuple(other.values())
                             others.append(selected)

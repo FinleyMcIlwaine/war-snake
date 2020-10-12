@@ -42,8 +42,8 @@ class Battlesnake(object):
         print("SNAKE:" + f"I'm at {my_head}!")
 
         pq = PriorityQueue()
-        # enemy_path = pq.enemy_path(my_head, close_food, env)[0:-1]
-        # env.add_walls(enemy_path)
+        enemy_path = pq.enemy_path(my_head, close_food, env)[:2]
+        env.add_walls(enemy_path)
 
         # if len(env.board["food"]) > 1:
         #     other_foods = []
