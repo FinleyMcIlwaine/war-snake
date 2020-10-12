@@ -56,6 +56,7 @@ class PriorityQueue:
         while (loc != start):
             path.insert(0, loc)
             loc = came_from[loc]
+        path.insert(0, start)
         print("A*: FOUND PATH: " + f"{path}")
         return path
 
