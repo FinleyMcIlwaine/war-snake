@@ -56,7 +56,7 @@ class PriorityQueue:
         my_distance = abs(my_x - goal_x) + abs(my_y - goal_y)
 
         print("ENEMY PATH: " + f"goal is {goal}, my head is {start}, distance {my_distance} to food.")
-        snakes = env["board"]["snakes"]
+        snakes = env.board["snakes"]
         enemy_head = tuple(snakes[0]["head"].values())
         (enemy_x, enemy_y) = enemy_head
         enemy_food_distance = 0
