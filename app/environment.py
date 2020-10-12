@@ -1,3 +1,5 @@
+import random
+
 class Environment:
     def __init__(self, board, me):
         self.me = me
@@ -98,7 +100,7 @@ class Environment:
                 if len(self.board["food"]) == 1:
                     current_target = enemy_head
                 else:
-                    # target random food if their is one
+                    # target random food if there is one
                     for other in self.board["food"]:
                         if tuple(other.values()) != nearest_food:
                             selected = tuple(other.values())
