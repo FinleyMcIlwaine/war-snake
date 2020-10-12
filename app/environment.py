@@ -46,7 +46,7 @@ class Environment:
             m for m in no_collision if not self.get_is_out_of_bounds(m)]
         return potential_moves
 
-    def add_walls(w):
+    def add_walls(self, w):
         self.walls.extend(w)
 
     def get_target(self):
