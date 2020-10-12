@@ -7,5 +7,6 @@
 	},
 	"extensions": [
        "ms-python.python"
-    ]
+    ],
+    "forwardPorts": [8080]
 }
