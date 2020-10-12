@@ -13,6 +13,13 @@ class Environment:
                 snake_locs.append(tuple(b.values()))
         return snake_locs
 
+    # Distance from food given a location and a food index
+    def get_distance_from_food_at_index(self, loc, i):
+        (x, y) = loc
+        if (i + 1 > len(self.board["food"])): return 100
+        return abs(x - self.board["food"][i]["x"]) \
+            + abs(y - self.board["food"][i]["y"])
+
     # Tuple of closest food location
     def get_closest_food(self, loc):
         closest_food_dist = 100000
@@ -23,12 +30,6 @@ class Environment:
                 closest_food = tuple(self.board["food"][i].values())
         return closest_food
 
-    # Distance from food given a location and a food index
-    def get_distance_from_food_at_index(self, loc, i):
-        (x, y) = loc
-        if (i + 1 > len(self.board["food"])): return 100
-        return abs(x - self.board["food"][i]["x"]) \
-            + abs(y - self.board["food"][i]["y"])
 
     # Is a location out of bounds
     def get_is_out_of_bounds(self, loc):
