@@ -89,6 +89,7 @@ class Environment:
 
 
         current_target = (food_x, food_y)
+        nearest_food = current_target
         others = []
         # If I'm longer than any enemy
         if my_length > longest_enemy:
