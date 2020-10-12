@@ -51,8 +51,13 @@ class PriorityQueue:
                     print("A*: " + f"Found cell {next} with priority {priority}")
                     frontier.put(next, priority)
                     came_from[next] = current_location
-        print("A*: FOUND PATH: " + f"{explored}")
-        return explored
+        path = []
+        loc = current_location
+        while (loc != start):
+            path.insert(0, loc)
+            loc = came_from[loc]
+        print("A*: FOUND PATH: " + f"{path}")
+        return path
 
     # Returns the "best" explored of the enemy closest to my goal
     def enemy_path(self, start, goal, env):

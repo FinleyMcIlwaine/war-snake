@@ -42,7 +42,7 @@ class Battlesnake(object):
         print("SNAKE:" + f"I'm at {my_head}!")
 
         pq = PriorityQueue()
-        enemy_path = pq.enemy_path(my_head, close_food, env)
+        enemy_path = pq.enemy_path(my_head, close_food, env)[0:-1]
         env.add_walls(enemy_path)
 
         if len(env.board["food"]) > 1:
@@ -52,7 +52,7 @@ class Battlesnake(object):
                     other_foods.append(tuple(f.values()))
             random_food = random.choice(other_foods)
 
-            between_foods_path = pq.a_star_search(close_food, random_food, env)
+            between_foods_path = pq.a_star_search(close_food, random_food, env)[1:-1]
             env.add_walls(between_foods_path)
 
         start = my_head
