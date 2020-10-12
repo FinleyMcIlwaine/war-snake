@@ -62,7 +62,7 @@ class PriorityQueue:
         enemy_food_distance = 0
 
         for snake in snakes:
-            if snake["name"] != "War Snake":
+            if snake["id"] != env.me["id"]:
                 (snake_head_x, snake_head_y) = tuple(snake["head"].values())
                 snake_food_distance = abs(
                     snake_head_x - goal_x) + abs(snake_head_y - goal_y)

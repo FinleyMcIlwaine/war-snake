@@ -60,7 +60,7 @@ class Environment:
 
         # Food distance
         my_food_distance = abs(my_head_x - food_x) + abs(my_head_y - food_y)
-        my_name = "War Snake"
+        my_id = self.me["id"]
 
         snakes = self.board["snakes"]
         longest_enemy = snakes[0]["length"]
@@ -74,7 +74,7 @@ class Environment:
         # Each snake
         for snake in snakes:
             # If not me
-            if snake["name"] != my_name:
+            if snake["id"] != my_id:
                 (snake_head_x, snake_head_y) = tuple(snake["head"].values())
                 # Track longest enemy
                 if snake["length"] >= longest_enemy:
