@@ -65,7 +65,7 @@ class Environment:
         my_id = self.me["id"]
 
         snakes = self.board["snakes"]
-        longest_enemy = snakes[0]["length"]
+        longest_enemy = 0
         enemy_tail = snakes[0]["body"][-1]
         enemy_head = tuple(snakes[0]["head"].values())
 
@@ -94,7 +94,7 @@ class Environment:
         nearest_food = current_target
         others = []
         # If I'm longer than any enemy
-        if my_length > longest_enemy:
+        if my_length > longest_enemy and longest_enemy > 0:
             # If an enemy is closer to my target food, go somewhere else, or just target their head
             if my_food_distance >= enemy_food_distance:
                 if len(self.board["food"]) == 1:

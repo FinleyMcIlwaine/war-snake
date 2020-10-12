@@ -71,6 +71,8 @@ class PriorityQueue:
         enemy_head = tuple(snakes[0]["head"].values())
         (enemy_x, enemy_y) = enemy_head
         enemy_food_distance = 0
+        closest_head_dist = 100
+        closest_head = (100,100)
 
         for snake in snakes:
             if snake["id"] != env.me["id"]:
@@ -81,9 +83,20 @@ class PriorityQueue:
                 if snake_food_distance <= my_distance:
                     enemy_head = tuple(snake["head"].values())
                     enemy_food_distance = snake_food_distance
+                
+                head_dist = abs(
+                    snake_head_x - my_x) + abs(snake_head_y - my_y)
+                if (head_dist < closest_head_dist):
+                    closest_head_dist = head_dist
+                    closest_head = (snake_head_x, snake_head_y)
+
         print(f"ENEMY PATH: " + f"enemy closest to food is at {enemy_head}")
-        if (enemy_head == start): return []
-        enemy_start, enemy_goal = enemy_head, goal
-        enemy_path = self.a_star_search(enemy_start, enemy_goal, env)
-        print("ENEMY_PATH: " + f"enemy explored to food is {enemy_path}")
+        if (enemy_head == start): 
+            enemy_path = []
+        else:
+            enemy_start, enemy_goal = enemy_head, goal
+            enemy_path = self.a_star_search(enemy_start, enemy_goal, env)
+        if (closest_head_dist < 3):
+            enemy_path.extend(env.get_potential_moves(closest_head))
+        print("ENEMY_PATH: " + f"enemy path to food is {enemy_path}")
         return enemy_path
