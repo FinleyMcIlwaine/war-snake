@@ -31,6 +31,8 @@ class PriorityQueue:
         distance_from_start[start] = 0
         path = []
 
+        print("A*: " + f"goal is {goal} from {start}")
+
         # A* bb
         while not frontier.empty():
             current_location = frontier.get()
@@ -47,6 +49,7 @@ class PriorityQueue:
                     priority = new_cost + self.heuristic(goal, next)
                     frontier.put(next, priority)
                     came_from[next] = current_location
+        print("A*: FOUND PATH: " + f"{path}")
         return path
 
     # Returns the "best" path of the enemy closest to my goal

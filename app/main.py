@@ -63,7 +63,7 @@ class Battlesnake(object):
 
         move = convert_xy_to_direction(best_path)
 
-        print(f"MOVE: {move}")
+        print(f"SNAKE: MOVE: {move}")
         return {
             "move": move,
             "shout": "YOU HAVE NO CHANCE, SURRENDER!"
