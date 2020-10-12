@@ -56,7 +56,8 @@ class Battlesnake(object):
             env.add_walls(between_foods_path)
 
         start = my_head
-        goal = self.change_targets(nearest_food, all_food_locations, snakes, head, length, height, width, snake_locations)
+
+        goal = env.get_target()
 
         best_path = pq.a_star_search(start, goal, env)
 

@@ -34,7 +34,7 @@ class Environment:
     # Is a location out of bounds
     def get_is_out_of_bounds(self, loc):
         (x, y) = loc
-        return not (x < 0 or y < 0 or x >= width or y >= height)
+        return not (x < 0 or y < 0 or x >= self.board["width"] or y >= self.board["height"])
 
     # All potential moves from a given location
     def get_potential_moves(self, loc):
