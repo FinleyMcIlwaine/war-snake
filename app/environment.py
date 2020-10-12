@@ -24,7 +24,7 @@ class Environment:
     def get_closest_food(self, loc):
         closest_food_dist = 100000
         for i in range(len(self.board["food"])):
-            dist = get_distance_from_food_at_index(loc, i)
+            dist = self.get_distance_from_food_at_index(loc, i)
             if(dist <= closest_food_dist):
                 closest_food_dist = dist
                 closest_food = tuple(self.board["food"][i].values())
