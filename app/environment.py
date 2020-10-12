@@ -43,7 +43,7 @@ class Environment:
         no_collision = [m for m in moves if m not in (
             self.get_snake_locations() + self.walls)]
         potential_moves = [
-            m for m in no_collision if not get_is_out_of_bounds(m)]
+            m for m in no_collision if not self.get_is_out_of_bounds(m)]
         return potential_moves
 
     def add_walls(w):
