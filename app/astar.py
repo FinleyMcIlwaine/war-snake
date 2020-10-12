@@ -7,7 +7,7 @@ class PriorityQueue:
     def __init__(self):
         self.elements = []
 
-    def get_is_empty(self):
+    def empty(self):
         return len(self.elements) == 0
 
     def put(self, item, priority):
