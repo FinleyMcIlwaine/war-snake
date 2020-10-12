@@ -67,7 +67,7 @@ class PriorityQueue:
                 snake_food_distance = abs(
                     snake_head_x - goal_x) + abs(snake_head_y - goal_y)
                 print("ENEMY PATH: " + f"Enemy snake goal is {goal}, enemy head is {(snake_head_x, snake_head_y)}, distance {snake_food_distance} to food.")
-                if snake_food_distance <= my_food_distance:
+                if snake_food_distance <= my_distance:
                     enemy_head = tuple(snake["head"].values())
                     enemy_food_distance = snake_food_distance
         print(f"ENEMY PATH: " + f"enemy closest to food is at {enemy_head}")
