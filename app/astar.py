@@ -29,30 +29,32 @@ class PriorityQueue:
         came_from[start] = None
         distance_from_start = {}
         distance_from_start[start] = 0
-        path = []
+        explored = []
 
         print("A*: " + f"goal is {goal} from {start}")
 
         # A* bb
         while not frontier.empty():
             current_location = frontier.get()
-            path.append(current_location)
+            explored.append(current_location)
             if current_location == goal:
                 break
+            print("A*: " + f"potential moves: {env.get_potential_moves(current_location)} from {current_location}")
             for next in env.get_potential_moves(current_location):
                 new_cost = distance_from_start[current_location] + \
                     self.heuristic(current_location, next)
-                # If we haven't been here or we found a cheaper path here
+                # If we haven't been here or we found a cheaper explored here
                 if next not in distance_from_start or new_cost < distance_from_start[next]:
                     # Add to frontier with priority
                     distance_from_start[next] = new_cost
                     priority = new_cost + self.heuristic(goal, next)
+                    print("A*: " + f"Found cell {next} with priority {priority}")
                     frontier.put(next, priority)
                     came_from[next] = current_location
-        print("A*: FOUND PATH: " + f"{path}")
-        return path
+        print("A*: FOUND PATH: " + f"{explored}")
+        return explored
 
-    # Returns the "best" path of the enemy closest to my goal
+    # Returns the "best" explored of the enemy closest to my goal
     def enemy_path(self, start, goal, env):
         (goal_x, goal_y) = goal
         (my_x, my_y) = start
@@ -77,5 +79,5 @@ class PriorityQueue:
         enemy_choices = env.get_potential_moves(enemy_head)
         enemy_start, enemy_goal = enemy_head, goal
         enemy_path = self.a_star_search(enemy_start, enemy_goal, env)
-        print("ENEMY_PATH: " + f"enemy path to food is {enemy_path}")
+        print("ENEMY_PATH: " + f"enemy explored to food is {enemy_path}")
         return enemy_path
